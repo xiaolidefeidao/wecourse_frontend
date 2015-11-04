@@ -2,8 +2,11 @@
 
 var React = require('react');
 var AdministrationApi = require('../../api/administrationApi');
+    var UserList = require('./userList');
+    var Router = require('react-router');
+var Link = Router.Link;
 
-var Administration = React.createClass({
+var AdministrationPage = React.createClass({
     getInitialState: function () {
         return {
             users: []
@@ -11,37 +14,20 @@ var Administration = React.createClass({
     },
     componentWillMount: function () {
         var usersRet = AdministrationApi.getAllUsers();
-        console.log(usersRet);
         this.setState({users: usersRet});
     },
     render: function () {
 
-        var createAuthorRow = function (user) {
-            return (
-                <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.firstName + ' ' + user.lastName}</td>
-                </tr>
-            );
-        };
-
         return (
             <div>
-                <h1>
-                    Administration
-                </h1>
-                <table className="table">
-                    <thead>
-                    <th>Id</th>
-                    <th>Name</th>
-                    </thead>
-                    <tbody>
-                    {this.state.users.map(createAuthorRow, this)}
-                    </tbody>
-                </table>
+                <div className="jumbotron">
+                    <h1>Administration</h1>
+                </div>
+                <Link className="btn btn-default" to="user">添加用户</Link>
+                <UserList users={this.state.users}></UserList>
             </div>
         );
     }
 });
 
-module.exports = Administration;
+module.exports = AdministrationPage;

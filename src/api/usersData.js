@@ -4,24 +4,24 @@ module.exports = {
     users:
         [
             {
-                id: '1',
-                firstName: '李',
-                lastName: '晓飞'
+                id: 'li-xiaofei',
+                firstName: 'li',
+                lastName: 'xiaofei'
             },
             {
-                id: '2',
-                firstName: '刘胜',
-                lastName: '英杰'
+                id: 'liusheng-yingjie',
+                firstName: 'liusheng',
+                lastName: 'yingjie'
             },
             {
-                id: '3',
-                firstName: '倪',
-                lastName: '成'
+                id: 'ni-cheng',
+                firstName: 'ni',
+                lastName: 'cheng'
             },
             {
-                id: '4',
-                firstName: '严',
-                lastName: '中华'
+                id: 'yan-zhonghua',
+                firstName: 'yan',
+                lastName: 'zhonghua'
             }
         ]
 };

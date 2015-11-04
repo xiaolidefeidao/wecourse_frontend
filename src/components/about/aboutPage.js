@@ -2,7 +2,21 @@
 
 var React = require('react');
 
-var About = React.createClass({
+var AboutPage = React.createClass({
+    //statics: {
+    //    willTransitionTo: function (transition, params, query, callback) {
+    //        if (!confirm("Are you sure?")) {
+    //            transition.abort();
+    //        } else {
+    //            callback();
+    //        }
+    //    },
+    //    willTransitionFrom: function (transition, component) {
+    //        if (!confirm("Are you sure Leaving?")) {
+    //            transition.abort();
+    //        }
+    //    }
+    //},
     render: function () {
         return (
             <div className="jumbotron">
@@ -23,4 +37,4 @@ var About = React.createClass({
     }
 });
 
-module.exports = About;
+module.exports = AboutPage;
