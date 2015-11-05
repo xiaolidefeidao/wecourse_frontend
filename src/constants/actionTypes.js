@@ -4,5 +4,8 @@ var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror(
     {
-        CREATE_USER: null
+        INITIALIZE: null,
+        CREATE_USER: null,
+        UPDATE_USER: null,
+        DELETE_USER: null
     });

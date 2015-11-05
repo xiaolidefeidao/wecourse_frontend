@@ -1,23 +1,28 @@
 "use strict";
 
 var React = require('react');
-var AdministrationApi = require('../../api/administrationApi');
-    var UserList = require('./userList');
-    var Router = require('react-router');
+var UserActions = require('../../actions/userActions');
+var UserStore = require('../../stores/userStore');
+var UserList = require('./userList');
+var Router = require('react-router');
 var Link = Router.Link;
 
 var AdministrationPage = React.createClass({
     getInitialState: function () {
         return {
-            users: []
+            users: UserStore.getAllUsers()
         };
     },
     componentWillMount: function () {
-        var usersRet = AdministrationApi.getAllUsers();
-        this.setState({users: usersRet});
+        UserStore.addChangeListener(this._onChange);
+    },
+    componentWillUnmount: function () {
+        UserStore.removeChangeListener(this._onChange);
+    },
+    _onChange: function () {
+        this.setState({users: UserStore.getAllUsers()});
     },
     render: function () {
-
         return (
             <div>
                 <div className="jumbotron">
