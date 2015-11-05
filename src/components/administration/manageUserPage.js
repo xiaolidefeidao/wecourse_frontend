@@ -10,6 +10,13 @@ var ManageUserPage = React.createClass({
     mixins: [
         Router.Navigation
     ],
+    statics: {
+        willTransitionFrom: function (transition, component) {
+            if (component.state.dirty && !confirm('Leave without saving?')) {
+                transition.abort();
+            }
+        }
+    },
     getInitialState: function () {
         return {
             user: {
@@ -17,14 +24,23 @@ var ManageUserPage = React.createClass({
                 firstName: "",
                 lastName: ""
             },
-            errors: {}
+            errors: {},
+            dirty: false
         };
+    },
+    componentWillMount: function () {
+        var authorId = this.props.params.id;
+
+        if (authorId) {
+            this.setState({user: AdministrationApi.getUserById(authorId)});
+        }
     },
     setUserState: function (event) {
         var field = event.target.name;
         var value = event.target.value;
         this.state.user[field] = value;
         this.setState({user: this.state.user});
+        this.setState({dirty: true});
     },
     userFormIsValid: function () {
         var formIsValid = true;
@@ -53,6 +69,7 @@ var ManageUserPage = React.createClass({
         }
 
         var user = AdministrationApi.saveUser(this.state.user);
+        this.setState({dirty: false});
         toastr.success(user.firstName + ' ' + user.lastName + ' Saved');
         this.transitionTo('administration');
     },

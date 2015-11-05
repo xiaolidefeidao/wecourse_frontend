@@ -15,7 +15,8 @@ var routes = (
 
         <Route name="administration" handler={require('./components/administration/administrationPage')}></Route>
         <Route name="about" handler={require('./components/about/aboutPage')}></Route>
-        <Route name="user" handler={require('./components/administration/manageUserPage')}></Route>
+        <Route name="user" path="user" handler={require('./components/administration/manageUserPage')}></Route>
+        <Route name="editUser" path="user/:id" handler={require('./components/administration/manageUserPage')}></Route>
 
         <NotFoundRoute handler={require('./components/notFoundPage')}></NotFoundRoute>
 
